@@ -6,9 +6,8 @@ import java.util.Scanner;
 
 public class Patient extends Human {
     public static Patient patient = new Patient();
-    Scanner sc = new Scanner(System.in);
-    String woundType;
-    Injuries injuryType;
+    int woundType;
+    int injuryType; // TODO. Injuries -> int 자료형 수정 [O]
     String healerType;
     int payment;
 
@@ -24,17 +23,17 @@ public class Patient extends Human {
 
     }
 
-    public String getWoundType() {
+    public int getWoundType() {
         return woundType;
     }
-    public void setWoundType(String woundType) {
+    public void setWoundType(int woundType) {
         this.woundType = woundType;
     }
 
-    public Injuries getInjuryType() {
+    public int getInjuryType() {
         return injuryType;
     }
-    public void setInjuryType(Injuries injuryType) {
+    public void setInjuryType(int injuryType) {
         this.injuryType = injuryType;
     }
 
