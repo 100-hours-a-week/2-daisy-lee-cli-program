@@ -16,7 +16,8 @@ public class ExternalWound extends Injury {
     }
 
     // 외상 종류 출력 및 선택
-    public void externalWoundList() {
+    @Override
+    public void woundList() {
         ExternalWounds[] externalWoundArr = ExternalWounds.values();
         int cost;
         String costStr;
@@ -26,6 +27,11 @@ public class ExternalWound extends Injury {
             System.out.printf(" %d. %s (+ ₩" + costStr + ")", externalWound.getWoundNumber(), externalWound.getWoundName());
             System.out.println();
         }
+    }
+
+    @Override
+    public void transferToHospital() {
+
     }
 
 }

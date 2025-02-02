@@ -13,7 +13,8 @@ public class InternalWound extends Injury {
         this.hospitalName = hospitalName;
     }
 
-    public void internalWoundList() {
+    @Override
+    public void woundList() {
         InternalWounds[] internalWoundArr = InternalWounds.values();
         int cost;
         String costStr;
@@ -23,5 +24,10 @@ public class InternalWound extends Injury {
             System.out.printf(" %d. %s (+ ₩" + costStr + ")", internalWound.getWoundNumber(), internalWound.getWoundName());
             System.out.println();
         }
+    }
+
+    @Override
+    public void transferToHospital() {
+
     }
 }
