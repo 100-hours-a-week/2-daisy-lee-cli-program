@@ -1,6 +1,6 @@
 package prac.injury;
 
-public enum InternalWoundQuestion {
+public enum ExternalWoundQuestion {
     QUES_1("점점 더 심해지나요?", "NONE"),
     QUES_2("계속 일정하게 아픈가요?", "NONE"),
     QUES_3("주기적으로 아픈가요?", "NONE"),
@@ -9,7 +9,7 @@ public enum InternalWoundQuestion {
     private String quesText;
     private String answer;
 
-    InternalWoundQuestion(String quesText, String answer) {
+    ExternalWoundQuestion(String quesText, String answer) {
         this.quesText = quesText;
         this.answer = answer;
     }

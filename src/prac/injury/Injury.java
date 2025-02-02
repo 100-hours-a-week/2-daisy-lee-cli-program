@@ -46,8 +46,17 @@ public class Injury {
     }
 
     // 치료부위에 따른 병원 이송
-    public void transferToHospital() {
+    public String findHospital() {
         System.out.println("환자를 이송합니다.");
+        return null;
     }
 
+    public void questions(){
+
+    }
+
+    public boolean isAllNo() {
+        // ExternalWound 일 경우 체크
+        return false;
+    }
 }

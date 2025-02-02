@@ -1,6 +1,8 @@
 package prac.injury;
 
 
+import static prac.human.Patient.patient;
+
 public class InternalWound extends Injury {
     String hospitalName;
 
@@ -27,7 +29,15 @@ public class InternalWound extends Injury {
     }
 
     @Override
-    public void transferToHospital() {
-
+    public String findHospital() {
+        String hospital = null;
+        int woundType = patient.getWoundType();
+        hospital = switch (woundType) {
+            case 1 -> "심장 센터";
+            case 2 -> "호흡기 내과";
+            case 3 -> "간 센터";
+            default -> hospital;
+        };
+        return hospital;
     }
 }
