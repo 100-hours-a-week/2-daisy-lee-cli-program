@@ -8,10 +8,10 @@ import prac.injury.InternalWound;
 import java.util.Scanner;
 
 import static prac.human.Patient.patient;
+import static prac.injury.Injury.injury;
 
 public class Description {
-    Scanner sc = new Scanner(System.in);
-    Injury injury = new Injury();
+    public static final Scanner sc = new Scanner(System.in);
     ExternalWound externalWound = new ExternalWound();
     InternalWound internalWound = new InternalWound();
 
@@ -29,9 +29,9 @@ public class Description {
     }
 
     public void setPatientInfo() {
-        setPatientInjury();        // 부상 분류 선택
-        setPatientName();   // 환자 이름 설정
-        setPatientWound();
+        setPatientInjury();         // 부상 분류 설정
+        setPatientName();           // 환자 이름 설정
+        setPatientWound();          // 치료 부위 설정
     }
 
     public void setPatientInjury() {
@@ -52,16 +52,24 @@ public class Description {
     }
 
     public void setPatientWound() {
+        int answer;
         nurseSmile();
         System.out.println("\'" + patient.getName() + "\' 님, 해당 부위에 대한 추가적인 정보가 필요합니다.");
-        System.out.println("      어떤 [" + patient.getInjuryType().getInjuryName() + "]에 해당하는지 선택해주세요.");
+        System.out.println("      어떤 [" + Injuries.of(patient.getInjuryType()) + "]에 해당하는지 선택해주세요.");
 
-        if(patient.getInjuryType() == Injuries.EXTERNAL) { // 외상
+        // TODO. 비교 안 하고 바로 해당하는 리스트를 출력할 순 없을까? [O]
+        /*if(patient.getInjuryType() == Injuries.EXTERNAL.ordinal()+1) { // 외상
             externalWound.externalWoundList();
         } else { // 내상
             internalWound.internalWoundList();
-        }
+        }*/
+        injury.woundList();
         select();
+        answer = sc.nextInt();
+        patient.setWoundType(answer);
+        //externalWound.transferToHospital();
+        //internalWound.transferToHospital();
+        String hospital = injury.transferToHospital();
     }
 
 
