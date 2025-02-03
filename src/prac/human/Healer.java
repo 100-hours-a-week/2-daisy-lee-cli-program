@@ -31,14 +31,6 @@ public class Healer extends Human {
         }
     }
 
-    void cure() {
-
-    }
-
-    void totalCostCalculate() {
-
-    }
-
     public String getType() {
         return type;
     }

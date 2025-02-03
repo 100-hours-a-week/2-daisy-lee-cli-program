@@ -4,15 +4,8 @@ package prac.injury;
 import static prac.human.Patient.patient;
 
 public class InternalWound extends Injury {
-    String hospitalName;
-
     public InternalWound() {
         super();
-    }
-
-    InternalWound(String hospitalName) {
-        super();
-        this.hospitalName = hospitalName;
     }
 
     @Override
