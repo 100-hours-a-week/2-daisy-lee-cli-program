@@ -7,6 +7,7 @@ import prac.injury.InternalWounds;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static prac.human.Patient.patient;
@@ -14,7 +15,7 @@ import static prac.injury.Injuries.EXTERNAL;
 import static prac.injury.Injury.injury;
 
 public class Description {
-    public static final Scanner sc = new Scanner(System.in);
+    public static Scanner sc = new Scanner(System.in);
     // Healer 하위 클래스 선언 및 초기화
     final Healer intern = new Intern("1년 미만 실습생", 100000, 30, 50);
     final Healer resident = new Resident("3년 이상 레지던트", 200000, 50, 60);
@@ -47,7 +48,6 @@ public class Description {
 
     public void setPatientInjury() {
         injury.injuryList();
-        select();
         injury.setInjury();
         line();
         nurseSmile();
@@ -69,10 +69,19 @@ public class Description {
         System.out.println("      어떤 [" + patient.getInjuryType().getInjuryName() + "]에 해당하는지 선택해주세요.");
 
         injury.woundList(); // 환자가 택한 부상 종류에 따른 치료 부위 출력
-        select();
-        answer = sc.nextInt();
-        patient.setWoundType(answer);   // 치료 부위 설정
-        moveToHospital();
+        while(true) {
+            try {
+                select();
+                answer = sc.nextInt();
+                patient.setWoundType(answer);   // 치료 부위 설정
+                ExternalWounds.of(patient.getWoundType());
+                moveToHospital();
+                break;
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("  ※ 올바른 값을 입력하세요. ※");
+                sc = new Scanner(System.in);
+            }
+        }
     }
 
     public void moveToHospital(){
@@ -97,7 +106,7 @@ public class Description {
         try {
             for(int i = 0; i < 3; i++) {
                 System.out.print(" ·");
-                Thread.sleep(1500);
+                Thread.sleep(1200);
                 System.out.flush();
             }
         } catch (InterruptedException e) {
@@ -146,9 +155,17 @@ public class Description {
             System.out.flush();
             System.out.println();
             healer.healerList(healers);
-            select();
-            int answer = sc.nextInt();
-            patient.setHealerType(healers[answer-1]);
+            while(true) {
+                try {
+                    select();
+                    int answer = sc.nextInt();
+                    patient.setHealerType(healers[answer - 1]);
+                    break;
+                } catch (ArrayIndexOutOfBoundsException | InputMismatchException | NullPointerException e) {
+                    System.out.println("  ※ 올바른 값을 입력하세요. ※");
+                    sc = new Scanner(System.in);
+                }
+            }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -173,14 +190,69 @@ public class Description {
                 System.out.println(".. 설마 돈이 부족하신 건 아니죠?");
             } else {
                 doctorSmile();
-                System.out.printf("거스름돈은 ₩ %s 입니다~", String.format("%,d", finalPayment - patient.getPayment()));
+                System.out.printf("거스름돈은 ₩ %s 입니다~\n", String.format("%,d", finalPayment - patient.getPayment()));
             }
         }
 
     }
 
-    public void startOperation() {
+    public void processOperation() {
+        line();
+        doctorSmile();
+        System.out.println("지금 바로 수술실로 안내드리겠습니다!");
+        System.out.println("     당신의 수술에 운이 깃들길 바라며..");
+        System.out.println();
+        onAirAnimation();
+        int operationProbability = setOperationProbability();
+        int randomNum = (int) (Math.random() * (100));
 
+        System.out.println();
+        line();
+        System.out.println();
+        if(randomNum <= operationProbability) {
+            successOperation();
+        } else {
+            failOperation();
+        }
+    }
+
+    private void onAirAnimation() {
+        String[] onAirArr = {"O", "N", " ", "A", "I", "R", " ", "🔴"};
+        System.out.println("=====================================");
+        System.out.print("          ");
+        try {
+            for(int i = 0; i < onAirArr.length; i++) {
+                System.out.print(onAirArr[i] + " ");
+                Thread.sleep(800);
+                System.out.flush();
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println();
+        System.out.println("=====================================");
+    }
+
+    private int setOperationProbability() {
+        Healer healerInfo = patient.getHealerType();
+        int minProbability = healerInfo.getMinProbability();
+        int maxProbability = healerInfo.getMaxProbability();
+
+        return (int) (Math.random() * (maxProbability - minProbability + 1) + minProbability);
+    }
+
+    private void successOperation() {
+        System.out.println("  수술이 성공적으로 마무리 되었습니다!");
+        System.out.println("  수술이 잘 되어 지금 퇴원하셔도 무방합니다.");
+        System.out.println();
+        System.out.println("  안녕히 가십시오 ...");
+    }
+
+    private void failOperation() {
+        System.out.println("  수술이 실패하였습니다.");
+        System.out.println("  병원에서는 이번 사건을 은폐하였고,");
+        System.out.println("  당신은 \'영원한 마취\'에서 깨어나지 못했습니다 ...");
+        System.out.println();
     }
 
     private void printReceipt() {
@@ -221,12 +293,9 @@ public class Description {
         System.out.println(" └──────────────────────────────────────┘");
     }
 
-    public void endOperation() {
-
-    }
-
     public void end() {
-
+        line();
+        System.out.println("          - T H E     E N D -");
     }
 
     private void line() {

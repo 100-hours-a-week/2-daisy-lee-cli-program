@@ -1,5 +1,6 @@
 package prac.injury;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static prac.Description.sc;
@@ -26,14 +27,23 @@ public class Injury {
     }
 
     public void setInjury() {
-        answer = sc.nextInt();
-        if(answer == 1) {   // 외상으로 다시 선언
-            injury = new ExternalWound();
-        } else {            // 내상으로 다시 선언
-            injury = new InternalWound();
+        while(true) {
+            try {
+                System.out.print(" >> ");
+                answer = sc.nextInt();
+                if(answer == 1) {   // 외상으로 다시 선언
+                    injury = new ExternalWound();
+                } else {            // 내상으로 다시 선언
+                    injury = new InternalWound();
+                }
+                patient.setInjuryType(Injuries.of(answer));
+                System.out.println();
+                break;
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("  ※ 올바른 값을 입력하세요. ※");
+                sc = new Scanner(System.in);
+            }
         }
-        patient.setInjuryType(Injuries.of(answer));
-        System.out.println();
     }
 
     public void checkInjury() {

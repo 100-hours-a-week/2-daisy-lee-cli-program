@@ -10,8 +10,7 @@ public class Main {
         description.setPatientInfo();   // 환자 정보 입력(injury, name, wound)
         description.setHealer();        // 치료자 선택
         description.handlePay();        // 결제 진행
-        description.startOperation();   // 수술 시작
-        description.endOperation();     // 수술 종료
+        description.processOperation(); // 수술 시작/종료
 
         description.end();              // 프로그램 종료
     }
