@@ -16,18 +16,14 @@ public enum Injuries{
     private final String injuryName;
     private final int injuryCost;
 
-    // injuryMap - (key: injuryNumber, value: injuryName)
+    // injuryMap - (key: injuryNumber, value: Injuries)
     private static Map<Integer, String> injuryMap = Collections.unmodifiableMap(
-            Stream.of(values()).collect(Collectors.toMap(Injuries::getInjuryNumber, Injuries::getInjuryName))
+            Stream.of(values()).collect(Collectors.toMap(Injuries::getInjuryNumber, Injuries::name))
     );
 
-    // injuryNumber를 통해 injuryName을 추출하는 함수
-    public static String of(final int injuryNumber) {
-        return Objects.requireNonNull(Arrays.stream(values())
-                        .filter(val -> injuryNumber == val.injuryNumber)
-                        .findFirst()
-                        .orElse(null))
-                .getInjuryName();
+    // injuryNumber를 통해 Injuries enum 객체를 추출하는 함수
+    public static Injuries of(final int injuryNumber) {
+        return Injuries.valueOf(injuryMap.get(injuryNumber));
     }
 
     Injuries(int injuryNumber, String injuryName, int injuryCost) {
@@ -36,9 +32,9 @@ public enum Injuries{
         this.injuryCost = injuryCost;
     }
 
-    int getInjuryNumber() {
+    public int getInjuryNumber() {
         return injuryNumber;
     }
     public String getInjuryName() { return injuryName; }
-    int getInjuryCost() { return injuryCost; }
+    public int getInjuryCost() { return injuryCost; }
 }

@@ -1,15 +1,16 @@
 package prac.human;
 
 import prac.injury.Injuries;
+import prac.injury.Injury;
 
 import java.util.Scanner;
 
 public class Patient extends Human {
     public static Patient patient = new Patient();
     int woundType;
-    int injuryType; // TODO. Injuries -> int 자료형 수정 [O]
-    String healerType;
-    int payment;
+    Injuries injuryType;
+    Healer healerType;
+    int payment = 0;
 
     public Patient() {
 
@@ -19,8 +20,10 @@ public class Patient extends Human {
         super(name);
     }
 
-    void pay() {
-
+    public void pay(int payment) {
+        int cumulativeSum = getPayment();
+        cumulativeSum += payment;
+        setPayment(cumulativeSum);
     }
 
     public int getWoundType() {
@@ -30,17 +33,17 @@ public class Patient extends Human {
         this.woundType = woundType;
     }
 
-    public int getInjuryType() {
+    public Injuries getInjuryType() {
         return injuryType;
     }
-    public void setInjuryType(int injuryType) {
+    public void setInjuryType(Injuries injuryType) {
         this.injuryType = injuryType;
     }
 
-    public String getHealerType() {
+    public Healer getHealerType() {
         return healerType;
     }
-    public void setHealerType(String healerType) {
+    public void setHealerType(Healer healerType) {
         this.healerType = healerType;
     }
 

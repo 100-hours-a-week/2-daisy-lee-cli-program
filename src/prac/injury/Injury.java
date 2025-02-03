@@ -5,9 +5,9 @@ import java.util.Scanner;
 import static prac.Description.sc;
 import static prac.human.Patient.patient;
 
-// TODO. 외상/내상 리스트 함수
 public class Injury {
     public static Injury injury = new Injury();
+    String hospitalName;
     int answer;
 
     public Injury() {
@@ -19,8 +19,8 @@ public class Injury {
         Injuries[] injuryArr = Injuries.values();
         for(Injuries injury : injuryArr) {
             int cost = injury.getInjuryCost();
-            String costStr = String.format("%,d", cost);
-            System.out.printf(" %d. %s (+ ₩" + costStr + ")", injury.getInjuryNumber(), injury.getInjuryName());
+            String costStr = String.format("%,d",cost);
+            System.out.printf(" %d. %s (+ ₩ %s)", injury.getInjuryNumber(), injury.getInjuryName(), costStr);
             System.out.println();
         }
     }
@@ -32,12 +32,12 @@ public class Injury {
         } else {            // 내상으로 다시 선언
             injury = new InternalWound();
         }
-        patient.setInjuryType(answer);
+        patient.setInjuryType(Injuries.of(answer));
         System.out.println();
     }
 
     public void checkInjury() {
-        System.out.println("네, [" + Injuries.of(patient.getInjuryType()) + "] 으로 접수해드리겠습니다.");
+        System.out.println("네, [" + patient.getInjuryType().getInjuryName() + "] 으로 접수해드리겠습니다.");
     }
 
     // 외상/내상에 따른 치료부위 목록 출력
@@ -58,5 +58,12 @@ public class Injury {
     public boolean isAllNo() {
         // ExternalWound 일 경우 체크
         return false;
+    }
+
+    public String getHospitalName() {
+        return hospitalName;
+    }
+    public void setHospitalName(String hospitalName) {
+        this.hospitalName = hospitalName;
     }
 }

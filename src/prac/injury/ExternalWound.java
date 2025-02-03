@@ -4,15 +4,9 @@ import static prac.Description.sc;
 import static prac.human.Patient.patient;
 
 public class ExternalWound extends Injury {
-    String hospitalName;
     int i = 0;
     public ExternalWound() {
         super();
-    }
-
-    ExternalWound(String hospitalName) {
-        super();
-        this.hospitalName = hospitalName;
     }
 
     // 외상 종류 출력 및 선택
@@ -84,7 +78,6 @@ public class ExternalWound extends Injury {
         }
         return flag;
     }
-
 
 }
 
