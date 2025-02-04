@@ -16,6 +16,9 @@ __CLI 프로그램 제작 (동기 프로그램)__
 제출은 사진찍어 제출하시면 됩니다.
 
 ## 클래스 다이어그램
+<img src="https://github.com/user-attachments/assets/4c18ab09-b986-44a7-b118-f0afd4343028" width="70%">
+<img src="https://github.com/user-attachments/assets/a906a496-7662-4daa-80ba-901d14e6d482" width="70%">
+<img src="https://github.com/user-attachments/assets/40c1d48e-727b-4987-8cfe-d6188022982f" width="70%">
 
 ## 주제 선정 이유
 병원에서의 치료 과정을 생각했다가 '돈을 밝히는 의사'로 배경을 잡고 싶다고 생각하게 되었습니다.   
@@ -151,4 +154,5 @@ __CLI 프로그램 제작 (동기 프로그램)__
 ─────────────────────────────────────
           - T H E     E N D -
 ```
-
+## 구현 목록
+- [ ]
