@@ -1,9 +1,6 @@
 package prac.human;
 
 import prac.injury.Injuries;
-import prac.injury.Injury;
-
-import java.util.Scanner;
 
 public class Patient extends Human {
     public static Patient patient = new Patient();
