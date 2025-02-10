@@ -13,10 +13,6 @@ public class Patient extends Human {
 
     }
 
-    Patient(String name) {
-        super(name);
-    }
-
     public void pay(int payment) {
         int cumulativeSum = getPayment();
         cumulativeSum += payment;

@@ -34,28 +34,16 @@ public class Healer extends Human {
     public String getType() {
         return type;
     }
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public int getCost() {
         return cost;
-    }
-    public void setCost(int cost) {
-        this.cost = cost;
     }
 
     public int getMinProbability() {
         return minProbability;
     }
-    public void setMinProbability(int minProbability) {
-        this.minProbability = minProbability;
-    }
 
     public int getMaxProbability() {
         return maxProbability;
-    }
-    public void setMaxProbability(int maxProbability) {
-        this.maxProbability = maxProbability;
     }
 }
