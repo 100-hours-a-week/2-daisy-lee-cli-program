@@ -7,10 +7,6 @@ public class Human {
 
     }
 
-    Human(String name) {
-
-    }
-
     public String getName() {
         return name;
     }

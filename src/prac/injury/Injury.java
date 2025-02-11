@@ -26,6 +26,7 @@ public class Injury {
         }
     }
 
+    // 부상 정보 set
     public void setInjury() {
         while(true) {
             try {
@@ -46,6 +47,7 @@ public class Injury {
         }
     }
 
+    // 선택된 부상 종류 출력 (시나리오용)
     public void checkInjury() {
         System.out.println("네, [" + patient.getInjuryType().getInjuryName() + "] 으로 접수해드리겠습니다.");
     }

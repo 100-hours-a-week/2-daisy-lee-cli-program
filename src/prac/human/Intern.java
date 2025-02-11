@@ -5,4 +5,6 @@ public class Intern extends Healer {
         super(type, cost, minProbability, maxProbability);
     }
 
+
+
 }

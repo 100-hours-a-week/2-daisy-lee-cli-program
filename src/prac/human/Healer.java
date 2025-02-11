@@ -1,10 +1,15 @@
 package prac.human;
 
+import static prac.human.Patient.patient;
+
 public class Healer extends Human {
+
+    public static Healer healer = new Healer();
     String type;
     int cost;
     int minProbability;
     int maxProbability;
+    int resultProbability;
 
     public Healer() {
         super();
@@ -18,17 +23,8 @@ public class Healer extends Human {
         this.maxProbability = maxProbability;
     }
 
-    public void healerList(Healer[] healers) {
-        int num = 1;
-        for(Healer healer : healers) {
-            String type = healer.getType();
-            String cost = String.format("%,d", healer.getCost());
-            int minProbability = healer.getMinProbability();
-            int maxProbability = healer.getMaxProbability();
-            System.out.printf(" %d. %s \t(+ ₩ %s) (성공 확률 : %d ~ %d%%)", num, type, cost, minProbability, maxProbability);
-            System.out.println();
-            num++;
-        }
+    public void addMessage(Healer healer) {
+        System.out.printf("%s 님의 수술 진행자는 [%s] 으로 배정되었습니다!", patient.getName(), patient.getHealerType().getType());
     }
 
     public String getType() {
@@ -45,5 +41,13 @@ public class Healer extends Human {
 
     public int getMaxProbability() {
         return maxProbability;
+    }
+
+    public int getResultProbability() {
+        return resultProbability;
+    }
+
+    public void setResultProbability(int resultProbability) {
+        this.resultProbability = resultProbability;
     }
 }
